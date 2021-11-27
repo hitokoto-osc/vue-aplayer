@@ -1,52 +1,29 @@
 {
   "name": "@moefe/vue-aplayer",
-  "description": "A beautiful HTML5 music player for Vue.js",
   "version": "2.0.0-beta.5",
+  "description": "A beautiful HTML5 music player for Vue.js",
   "author": "u3u <qwq@qwq.cat>",
-  "license": "MIT",
-  "homepage": "https://github.com/MoePlayer/vue-aplayer#readme",
+  "scripts": {
+    "serve": "vue-cli-service serve --open",
+    "build": "vue-cli-service build --report --target lib --name VueAPlayer packages/@moefe/vue-aplayer/index.ts",
+    "lint": "vue-cli-service lint packages",
+    "build:example": "vue-cli-service build --dest demo",
+    "contributors": "all-contributors",
+    "docs:build": "yarn docs:prebuild && vuepress build docs",
+    "docs:dev": "yarn docs:link && vuepress dev docs --debug --port 3000",
+    "docs:link": "yarn link && yarn link \"@moefe/vue-aplayer\"",
+    "docs:prebuild": "yarn build && yarn docs:link",
+    "format": "prettier-eslint \"**/*.{js,jsx,json,ts,tsx,scss,vue,md}\" --write",
+    "lint:prettier": "prettier-eslint-check \"**/*.{js,jsx,json,ts,tsx,scss,vue,md}\"",
+    "prepublishOnly": "yarn build",
+    "test:types": "dtslint types"
+  },
   "main": "dist/VueAPlayer.common.js",
   "unpkg": "dist/VueAPlayer.umd.min.js",
-  "jsdelivr": "dist/VueAPlayer.umd.min.js",
-  "types": "types/index.d.ts",
   "files": [
     "dist",
     "types"
   ],
-  "repository": {
-    "url": "git+https://github.com/MoePlayer/vue-aplayer.git",
-    "type": "git"
-  },
-  "bugs": {
-    "url": "https://github.com/MoePlayer/vue-aplayer/issues"
-  },
-  "keywords": [
-    "player",
-    "aplayer",
-    "vue-aplayer",
-    "music",
-    "html5",
-    "audio",
-    "media"
-  ],
-  "scripts": {
-    "prepublishOnly": "yarn build",
-    "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build --report --target lib --name VueAPlayer packages/@moefe/vue-aplayer/index.ts",
-    "build:example": "vue-cli-service build --dest demo",
-    "docs:link": "yarn link && yarn link \"@moefe/vue-aplayer\"",
-    "docs:dev": "yarn docs:link && vuepress dev docs --debug --port 3000",
-    "docs:build": "yarn docs:prebuild && vuepress build docs",
-    "docs:prebuild": "yarn build && yarn docs:link",
-    "lint": "vue-cli-service lint packages",
-    "lint:prettier": "prettier-eslint-check \"**/*.{js,jsx,json,ts,tsx,scss,vue,md}\"",
-    "format": "prettier-eslint \"**/*.{js,jsx,json,ts,tsx,scss,vue,md}\" --write",
-    "test:types": "dtslint types",
-    "contributors": "all-contributors"
-  },
-  "peerDependencies": {
-    "vue": "^2.2.0"
-  },
   "dependencies": {
     "vue": "^2.6.14"
   },
@@ -57,10 +34,10 @@
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "@vue/cli-plugin-babel": "^4.5.15",
-    "@vue/cli-plugin-eslint": "^4.5.15",
-    "@vue/cli-plugin-typescript": "^4.5.15",
-    "@vue/cli-service": "^4.5.15",
+    "@vue/cli-plugin-babel": "~5.0.0-rc.1",
+    "@vue/cli-plugin-eslint": "~5.0.0-rc.1",
+    "@vue/cli-plugin-typescript": "~5.0.0-rc.1",
+    "@vue/cli-service": "~5.0.0-rc.1",
     "@vue/compiler-sfc": "^3.2.23",
     "@vue/eslint-config-airbnb": "^6.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
@@ -90,17 +67,40 @@
     "vuepress": "^1.8.2",
     "webpack": "^5.64.4"
   },
+  "peerDependencies": {
+    "vue": "^2.2.0"
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
   ],
+  "bugs": {
+    "url": "https://github.com/MoePlayer/vue-aplayer/issues"
+  },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
+  "homepage": "https://github.com/MoePlayer/vue-aplayer#readme",
+  "jsdelivr": "dist/VueAPlayer.umd.min.js",
+  "keywords": [
+    "player",
+    "aplayer",
+    "vue-aplayer",
+    "music",
+    "html5",
+    "audio",
+    "media"
+  ],
+  "license": "MIT",
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": "vue-cli-service lint",
     "*.{js,jsx,json,ts,tsx,scss,vue,md}": "prettier-eslint-check"
   },
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.1.1",
+  "repository": {
+    "url": "git+https://github.com/MoePlayer/vue-aplayer.git",
+    "type": "git"
+  },
+  "types": "types/index.d.ts"
 }
