@@ -84,7 +84,7 @@ export default class Lyric extends Vue.Component<LyricProps> {
           resolve('');
           break;
         case 1:
-          resolve(currentMusic.lrc);
+          resolve(currentMusic.lrc ?? '');
           break;
         case 3:
           resolve(currentMusic.lrc ? this.xhr.download(currentMusic.lrc) : '');

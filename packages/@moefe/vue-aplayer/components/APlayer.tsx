@@ -451,7 +451,7 @@ export default class APlayer extends Vue.Component<
       if (this.mutex) this.pauseOtherInstances();
       await this.player.play();
     } catch (e) {
-      this.showNotice(e.message);
+      this.showNotice((e as Error).message);
       this.player.pause();
     }
   }
@@ -484,7 +484,7 @@ export default class APlayer extends Vue.Component<
         }
       }
     } catch (e) {
-      this.showNotice(e.message);
+      this.showNotice((e as Error).message);
     } finally {
       this.isAwaitChangeProgressBar = false;
     }
@@ -600,8 +600,8 @@ export default class APlayer extends Vue.Component<
     });
   }
 
-  private getAudioUrl(music: APlayer.Audio): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
+  private getAudioUrl(music: APlayer.Audio): Promise<string | void> {
+    return new Promise<string | void>((resolve, reject) => {
       let { type } = music;
       if (type && this.customAudioType && this.customAudioType[type]) {
         if (typeof this.customAudioType[type] === 'function') {
@@ -618,7 +618,7 @@ export default class APlayer extends Vue.Component<
         if (type === 'hls') {
           try {
             if (Hls.isSupported()) {
-              const hls: Hls = new Hls();
+              const hls = new Hls();
               hls.loadSource(music.url);
               hls.attachMedia(this.player as HTMLVideoElement);
               resolve();

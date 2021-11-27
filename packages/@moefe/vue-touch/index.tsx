@@ -52,6 +52,8 @@ export default class Touch extends Vue.Component<TouchProps, TouchEvents> {
   }
 
   mounted() {
+    // Because of the way the event listeners are attached, we need to
+    // @ts-ignore
     this.$el.addEventListener(this.dragStart, (e: MouseEvent | TouchEvent) => {
       this.$emit('panStart', e);
       document.addEventListener(this.dragMove, this.thumbMove);
