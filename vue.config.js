@@ -3,7 +3,9 @@
 // https://cli.vuejs.org/config/
 // https://cli.vuejs.org/guide/build-targets.html
 const path = require('path');
-const gitRevisionPlugin = new (require('git-revision-webpack-plugin'))();
+const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
+
+const gitRevisionPlugin = new GitRevisionPlugin();
 
 module.exports = {
   css: { extract: false },
@@ -20,28 +22,33 @@ module.exports = {
   },
   chainWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
+      const copyOptions = {
+        patterns: [
+          {
+            from: path.resolve(__dirname, 'example/public'),
+            to: path.resolve(__dirname, 'demo'),
+            toType: 'dir',
+            noErrorOnMissing: true,
+            globOptions: {
+              ignore: ['index.html', '.DS_Store'],
+            },
+            info: {
+              minimized: true,
+            },
+          },
+        ],
+      };
       // https://github.com/vuejs/vue-cli/blob/5a8abe029e0c9a16f575983f76d51c569145b0b0/packages/%40vue/cli-service-global/lib/globalConfigPlugin.js#L128-L131
       // https://github.com/vuejs/vue-cli/blob/5a8abe029e0c9a16f575983f76d51c569145b0b0/packages/%40vue/cli-service/lib/commands/build/resolveAppConfig.js#L6-L12
       // https://github.com/vuejs/vue-cli/blob/5a8abe029e0c9a16f575983f76d51c569145b0b0/packages/%40vue/cli-service/lib/config/app.js#L211-L221
       // https://github.com/vuejs/vue-cli/issues/1550#issuecomment-401786406
-      config.plugin('copy').use(require('copy-webpack-plugin'), [
-        [
-          {
-            from: path.resolve(__dirname, 'example/public'),
-            to: path.resolve(__dirname, 'demo'),
-            ignore: ['index.html', '.DS_Store'],
-          },
-        ],
-      ]);
+      config.plugin('copy').use(require('copy-webpack-plugin'), [copyOptions]);
     } else {
       // https://github.com/vuejs/vue-cli/issues/1132
       config.output.filename('[name].[hash].js').end();
     }
 
-    config
-      .entry('app')
-      .clear()
-      .add('./example/main.ts');
+    config.entry('app').clear().add('./example/main.ts');
 
     config.plugin('define').tap((args) => {
       Object.assign(args[0], {
@@ -52,10 +59,7 @@ module.exports = {
     });
 
     // https://cli.vuejs.org/guide/webpack.html#replacing-loaders-of-a-rule
-    config.module
-      .rule('svg')
-      .use('file-loader')
-      .loader('vue-svg-loader');
+    config.module.rule('svg').use('file-loader').loader('vue-svg-loader');
 
     // https://github.com/mozilla-neutrino/webpack-chain#config-resolve-alias
     config.resolve.alias

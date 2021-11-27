@@ -51,21 +51,28 @@
     "vue": "^2.6.14"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
     "@types/classnames": "^2.3.1",
     "@types/hls.js": "^1.0.0",
     "@types/node": "^16.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "^4.5.15",
     "@vue/cli-plugin-eslint": "^4.5.15",
     "@vue/cli-plugin-typescript": "^4.5.15",
     "@vue/cli-service": "^4.5.15",
+    "@vue/compiler-sfc": "^3.2.23",
     "@vue/eslint-config-airbnb": "^6.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "@vuepress/plugin-pwa": "^1.8.2",
     "all-contributors-cli": "^6.20.0",
     "classnames": "^2.3.1",
+    "copy-webpack-plugin": "^10.0.0",
     "dayjs": "^1.10.7",
     "dtslint": "^4.2.1",
+    "eslint": "7",
+    "eslint-plugin-vue": "^8.1.1",
+    "eslint-plugin-vuejs-accessibility": "^1.1.0",
     "git-revision-webpack-plugin": "^5.0.0",
     "lint-staged": "^12.1.2",
     "prettier": "^2.5.0",
@@ -80,7 +87,8 @@
     "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.14",
     "vue-tsx-support": "^3.2.0",
-    "vuepress": "^1.8.2"
+    "vuepress": "^1.8.2",
+    "webpack": "^5.64.4"
   },
   "browserslist": [
     "> 1%",
