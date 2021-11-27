@@ -5,6 +5,7 @@ import events from './events';
 
 export { events };
 
+// eslint-disable-next-line no-shadow
 export enum ReadyState {
   /** 没有关于音频是否就绪的信息 */
   HAVE_NOTHING = 0,

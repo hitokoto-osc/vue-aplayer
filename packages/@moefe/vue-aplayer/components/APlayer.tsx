@@ -18,7 +18,7 @@ import '../assets/style/aplayer.scss';
 declare global {
   const Hls: typeof _Hls;
 }
-
+// eslint-disable-next-line no-use-before-define
 const instances: APlayer[] = [];
 const store = new Store();
 let channel: BroadcastChannel | null = null;
@@ -107,7 +107,7 @@ export default class APlayer extends Vue.Component<
   // 数据源，自动生成 ID 作为播放列表项的 key
   private get dataSource(): APlayer.Audio[] {
     return (Array.isArray(this.audio) ? this.audio : [this.audio])
-      .filter(x => x)
+      .filter((x) => x)
       .map((item, index) => ({
         id: index + 1,
         ...item,
@@ -203,14 +203,14 @@ export default class APlayer extends Vue.Component<
   private get currentOrderIndex(): number {
     const { id, url } = this.currentMusic;
     return this.orderList.findIndex(
-      item => item.id === id || item.url === url,
+      (item) => item.id === id || item.url === url,
     );
   }
 
   private get currentRandomIndex() {
     const { id, url } = this.currentMusic;
     return this.randomList.findIndex(
-      item => item.id === id || item.url === url,
+      (item) => item.id === id || item.url === url,
     );
   }
 
@@ -258,7 +258,7 @@ export default class APlayer extends Vue.Component<
           if (this.currentOrderIndex < 0) {
             const { id, url } = this.currentMusic;
             const oldIndex = oldList.findIndex(
-              item => item.id === id || item.url === url,
+              (item) => item.id === id || item.url === url,
             );
             Object.assign(this.currentMusic, oldList[oldIndex - 1]);
           }
@@ -374,7 +374,6 @@ export default class APlayer extends Vue.Component<
     if (!this.media.ended) return;
     this.currentPlayed = 0;
     switch (this.currentLoop) {
-      default:
       case 'all':
         this.handleSkipForward();
         break;
@@ -387,6 +386,8 @@ export default class APlayer extends Vue.Component<
           this.pause();
           this.canPlay = false;
         } else this.handleSkipForward();
+        break;
+      default:
         break;
     }
   }
@@ -498,16 +499,16 @@ export default class APlayer extends Vue.Component<
     switch (typeof audio) {
       case 'number':
         this.currentMusic = this.orderList[
-          Math.min(Math.max(0, audio), this.orderList.length - 1)
-        ];
+            Math.min(Math.max(0, audio), this.orderList.length - 1)
+          ];
         break;
-      // eslint-disable-next-line no-case-declarations
-      default:
+      default: {
         const music = this.orderList.find(
-          item => typeof item.name === 'string' && item.name.includes(audio),
+          (item) => typeof item.name === 'string' && item.name.includes(audio),
         );
         if (music) this.currentMusic = music;
         break;
+      }
     }
   }
 
@@ -575,24 +576,25 @@ export default class APlayer extends Vue.Component<
 
   // 从封面中获取主题颜色
   private getThemeColorFromCover(url: string): Promise<string> {
-    return new Promise<string>(async (resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
       try {
         if (typeof ColorThief !== 'undefined') {
-          const image = await this.xhr.download<Blob>(url, 'blob');
-          const reader = new FileReader();
-          reader.onload = () => {
-            this.img.src = reader.result as string;
-            this.img.onload = () => {
-              const [r, g, b] = new ColorThief().getColor(this.img);
-              const theme = `rgb(${r}, ${g}, ${b})`;
-              resolve(theme || this.currentMusic.theme || this.theme);
+          this.xhr.download<Blob>(url, 'blob').then((image) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              this.img.src = reader.result as string;
+              this.img.onload = () => {
+                const [r, g, b] = new ColorThief().getColor(this.img);
+                const theme = `rgb(${r}, ${g}, ${b})`;
+                resolve(theme || this.currentMusic.theme || this.theme);
+              };
+              this.img.onabort = reject;
+              this.img.onerror = reject;
             };
-            this.img.onabort = reject;
-            this.img.onerror = reject;
-          };
-          reader.onabort = reject;
-          reader.onerror = reject;
-          reader.readAsDataURL(image);
+            reader.onabort = reject;
+            reader.onerror = reject;
+            reader.readAsDataURL(image);
+          });
         } else resolve(this.currentMusic.theme || this.theme);
       } catch (e) {
         resolve(this.currentMusic.theme || this.theme);
@@ -647,7 +649,7 @@ export default class APlayer extends Vue.Component<
   }
 
   private pauseOtherInstances() {
-    instances.filter(inst => inst !== this).forEach(inst => inst.pause());
+    instances.filter((inst) => inst !== this).forEach((inst) => inst.pause());
   }
 
   private saveSettings(settings: APlayer.Settings | null) {
@@ -729,7 +731,7 @@ export default class APlayer extends Vue.Component<
   beforeMount() {
     this.store.key = this.storageName;
 
-    const emptyIndex = instances.findIndex(x => !x);
+    const emptyIndex = instances.findIndex((x) => !x);
     if (emptyIndex > -1) instances[emptyIndex] = this;
     else instances.push(this);
 
@@ -772,7 +774,7 @@ export default class APlayer extends Vue.Component<
     }
 
     events.forEach((event) => {
-      this.player.addEventListener(event, e => this.$emit(event, e));
+      this.player.addEventListener(event, (e) => this.$emit(event, e));
     });
   }
 
@@ -805,7 +807,7 @@ export default class APlayer extends Vue.Component<
         class={classNames({
           aplayer: true,
           'aplayer-withlist': dataSource.length > 1,
-          'aplayer-withlrc': !fixed && (lrcType !== 0 && lyricVisible),
+          'aplayer-withlrc': !fixed && lrcType !== 0 && lyricVisible,
           'aplayer-narrow': isMini,
           'aplayer-fixed': fixed,
           'aplayer-mobile': isMobile,

@@ -51,7 +51,7 @@ export default class Lyric extends Vue.Component<LyricProps> {
   private get current(): LRC {
     const { media, currentPlayed } = this.aplayer;
     const match = this.parsed.filter(
-      x => x.time < currentPlayed * media.duration * 1000,
+      (x) => x.time < currentPlayed * media.duration * 1000,
     );
     if (match && match.length > 0) return match[match.length - 1];
     return this.parsed[0];
@@ -127,7 +127,7 @@ export default class Lyric extends Vue.Component<LyricProps> {
     lrc
       .replace(/\\n/g, '\n')
       .split('\n')
-      .forEach(line => matchAll(line));
+      .forEach((line) => matchAll(line));
 
     if (parsed.length > 0) {
       parsed.sort((a, b) => a.time - b.time);

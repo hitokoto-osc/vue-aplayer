@@ -15,6 +15,7 @@ export default function install(
   const opts = { ...defaultOptions, ...options };
   Object.assign(APlayer.prototype, { options: opts });
 
+  // eslint-disable-next-line vue/multi-word-component-names
   Vue.component('aplayer', APlayer);
   Vue.component('APlayer', APlayer);
 

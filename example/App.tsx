@@ -27,7 +27,7 @@ export default class App extends Vue {
 
   async created() {
     const data: Array<APlayer.Audio> = await fetch('/music/data.json').then(
-      res => res.json(),
+      (res) => res.json(),
     );
     const isSafari = /apple/i.test(navigator.vendor);
     if (isSafari) {
@@ -46,12 +46,12 @@ export default class App extends Vue {
 
     return (
       <div id="app">
-        <APlayer {...{ props: aplayer0 }} />
+        <APlayer {...aplayer0} />
         <div class="landing">
           <h1>Vue-Aplayer</h1>
           <h3>🍰 A beautiful HTML5 music player for Vue.js.</h3>
           <div class="aplayer-wrap">
-            <APlayer {...{ props: aplayer1 }} />
+            <APlayer {...aplayer1} />
           </div>
           <div class="landing-buttons">
             <a

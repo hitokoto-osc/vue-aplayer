@@ -11,5 +11,5 @@ if (localStorage.getItem('GIT_HASH') !== GIT_HASH) {
 
 new Vue({
   // eslint-disable-next-line global-require
-  render: h => h(require('./App').default),
+  render: (h) => h(require('./App').default),
 }).$mount('#app');
