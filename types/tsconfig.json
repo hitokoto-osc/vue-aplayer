@@ -6,6 +6,7 @@
     "declaration": true,
     "strict": true,
     "jsx": "preserve",
+    "jsxFactory": "VueTsxSupport",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
