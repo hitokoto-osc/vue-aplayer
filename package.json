@@ -100,8 +100,8 @@
   ],
   "license": "MIT",
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,vue}": "vue-cli-service lint",
-    "*.{js,jsx,json,ts,tsx,scss,vue,md}": "prettier --write"
+    "*.{js,jsx,json,ts,tsx,scss,vue,md}": "prettier --write",
+    "*.{js,jsx,ts,tsx,vue}": "vue-cli-service lint"
   },
   "packageManager": "yarn@3.1.1",
   "repository": {

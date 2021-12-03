@@ -43,7 +43,8 @@ export default class App extends Vue {
 
   render() {
     const { aplayer0, aplayer1 } = this;
-    return aplayer0.audio && aplayer1.audio ? (
+    return (aplayer0.audio as unknown as APlayer.Audio[]).length &&
+      (aplayer0.audio as unknown as APlayer.Audio[]).length ? (
       <div id="app">
         <APlayer {...{ props: aplayer0, ...aplayer0 }} />
         <div class="landing">

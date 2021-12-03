@@ -411,7 +411,7 @@ export default class APlayer extends Vue.Component<
 
   @Watch('loop')
   private handleChangeLoop() {
-    console.log(this.loop);
+    // console.log(this.loop);
     this.currentLoop = this.loop;
   }
 

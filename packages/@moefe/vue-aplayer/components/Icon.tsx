@@ -68,7 +68,7 @@ export default class Icon extends Vue.Component<IconProps> {
   render(h: CreateElement) {
     const svg = svgIconsList.includes(this.type);
     if (!svg) {
-      console.warn(`Icon ${this.type} not found`);
+      window.console.warn(`Icon ${this.type} not found`);
       return null;
     }
     return h(humps.pascalize(this.type), { props: {} }, []);

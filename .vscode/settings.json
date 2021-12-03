@@ -9,11 +9,6 @@
     "typescript",
     "typescriptreact"
   ],
-  "files.exclude": {
-    "demo": true,
-    "dist": true,
-    "logo": true
-  },
   "prettier.eslintIntegration": true,
   "typescript.tsdk": "node_modules/typescript/lib"
 }
