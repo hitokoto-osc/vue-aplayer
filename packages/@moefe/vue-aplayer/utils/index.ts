@@ -15,7 +15,7 @@ export class HttpRequest {
 
   public download<T>(
     url: string,
-    responseType: XMLHttpRequestResponseType = '',
+    responseType: XMLHttpRequestResponseType = ''
   ) {
     return new Promise<T>((resolve, reject) => {
       this.xhr.open('get', url);

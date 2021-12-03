@@ -12,6 +12,7 @@ declare global {
     export type Preload = 'none' | 'metadata' | 'auto';
     export type AudioType = 'auto' | 'hls' | 'normal';
 
+    // eslint-disable-next-line no-shadow
     export enum LrcType {
       file = 3,
       html = 2, // not support

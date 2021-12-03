@@ -17,8 +17,10 @@ module.exports = {
     },
   },
   devServer: {
-    // https://webpack.docschina.org/configuration/dev-server/#devserver-contentbase
-    contentBase: path.resolve(__dirname, 'example/public'),
+    // https://webpack.js.org/configuration/dev-server/
+    static: {
+      directory: path.resolve(__dirname, 'example/public'),
+    },
   },
   chainWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
@@ -48,6 +50,18 @@ module.exports = {
       config.output.filename('[name].[hash].js').end();
     }
 
+    // https://next.cli.vuejs.org/guide/webpack.html#replacing-loaders-of-a-rule
+    const svgRule = config.module.rule('svg');
+    svgRule.uses.clear();
+    svgRule.delete('type');
+    svgRule.delete('generator');
+    svgRule
+      .use('vue-loader')
+      .loader('vue-loader') // or `vue-loader-v16` if you are using a preview support of Vue 3 in Vue CLI
+      .end()
+      .use('vue-svg-loader')
+      .loader('vue-svg-loader');
+
     config.entry('app').clear().add('./example/main.ts');
 
     config.plugin('define').tap((args) => {
@@ -57,9 +71,6 @@ module.exports = {
       });
       return args;
     });
-
-    // https://cli.vuejs.org/guide/webpack.html#replacing-loaders-of-a-rule
-    config.module.rule('svg').use('file-loader').loader('vue-svg-loader');
 
     // https://github.com/mozilla-neutrino/webpack-chain#config-resolve-alias
     config.resolve.alias

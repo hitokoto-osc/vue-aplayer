@@ -1,6 +1,11 @@
 module.exports = {
   root: true,
-  extends: ['plugin:vue/essential', '@vue/airbnb', '@vue/typescript'],
+  extends: [
+    'plugin:vue/essential',
+    '@vue/airbnb',
+    '@vue/typescript',
+    'plugin:prettier/recommended',
+  ],
   rules: {
     // https://github.com/vuejs/vue-cli/issues/1672
     indent: 'off',

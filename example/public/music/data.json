@@ -1,58 +1,58 @@
 [
   {
     "name": "东西（Cover：林俊呈）",
-    "artist": "纳豆",
-    "url": "https://cdn.moefe.org/music/mp3/thing.mp3",
-    "cover": "https://p1.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300",
-    "lrc": "https://cdn.moefe.org/music/lrc/thing.lrc"
+    "artist": "纳豆nado",
+    "url": "https://v1.hitokoto.cn/nm/redirect/music/1321594530",
+    "cover": "https://p3.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300",
+    "lrc": "https://api.a632079.me/nm/lyric/1321594530?pure=true"
   },
   {
     "name": "响喜乱舞（Cover：MARiA）",
     "artist": "泠鸢yousa",
-    "url": "https://cdn.moefe.org/music/mp3/kyoukiranbu.mp3",
+    "url": "https://v1.hitokoto.cn/nm/redirect/music/1318962459",
     "cover": "https://p1.music.126.net/AUGVPQ_rVrngDH9ocQrn3Q==/109951163613037822.jpg?param=300y300",
-    "lrc": "https://cdn.moefe.org/music/lrc/kyoukiranbu.lrc"
+    "lrc": "https://api.a632079.me/nm/lyric/1321594530?pure=true"
   },
   {
     "name": "啵唧",
     "artist": "Hanser",
-    "url": "https://cdn.moefe.org/music/mp3/kiss.mp3",
+    "url": "https://v1.hitokoto.cn/nm/redirect/music/1321424246",
     "cover": "https://p1.music.126.net/K0-IPcIQ9QFvA0jXTBqoWQ==/109951163636756693.jpg?param=300y300",
-    "lrc": "https://cdn.moefe.org/music/lrc/kiss.lrc"
+    "lrc": "https://api.a632079.me/nm/lyric/1321424246?pure=true"
   },
   {
     "name": "伴宅日记",
     "artist": "Hanser",
-    "url": "https://cdn.moefe.org/music/mp3/diary.mp3",
+    "url": "https://v1.hitokoto.cn/nm/redirect/music/1320634307",
     "cover": "https://p1.music.126.net/oW7TW0VjK5PoNjhzdPm1lw==/109951163626390573.jpg?param=300y300",
-    "lrc": "https://cdn.moefe.org/music/lrc/diary.lrc"
+    "lrc": "https://api.a632079.me/nm/lyric/1320634307?pure=true"
   },
   {
     "name": "童遊",
     "artist": "めらみぽっぷ",
-    "url": "https://cdn.moefe.org/music/mp3/innocenttreasures.mp3",
+    "url": "https://v1.hitokoto.cn/nm/redirect/music/28732503",
     "cover": "https://p1.music.126.net/tkazmUdvztqtaL-XDN4D2A==/5947258394962501.jpg?param=300y300",
-    "lrc": "https://cdn.moefe.org/music/lrc/innocenttreasures.lrc"
+    "lrc": "https://api.a632079.me/nm/lyric/28732503?pure=true"
   },
   {
     "name": "The Party We Have Never Seen",
     "artist": "Nana Takahashi",
-    "url": "https://cdn.moefe.org/music/mp3/thepartywehaveneverseen.mp3",
+    "url": "https://v1.hitokoto.cn/nm/redirect/music/41416589",
     "cover": "https://p1.music.126.net/IwclpJu4gaqhSZrKunEFWg==/3297435379408525.jpg?param=300y300",
-    "lrc": "https://cdn.moefe.org/music/lrc/thepartywehaveneverseen.lrc"
+    "lrc": "https://api.a632079.me/nm/lyric/41416589?pure=true"
   },
   {
-    "name": "Let It Go.m3u8",
+    "name": "Let It Go",
     "artist": "Idina Menzel",
-    "url": "https://cdn.moefe.org/music/hls/frozen.m3u8",
+    "url": "https://v1.hitokoto.cn/nm/redirect/music/865492223",
     "cover": "https://p1.music.126.net/n72JJkPg2-ENxhB-DsZ2AA==/109951163115400390.jpg?param=300y300",
-    "lrc": "https://cdn.moefe.org/music/lrc/frozen.lrc"
+    "lrc": "https://api.a632079.me/nm/lyric/865492223?pure=true"
   },
   {
     "name": "Star Sky",
     "artist": "Two Steps From Hell",
-    "url": "https://cdn.moefe.org/music/mp3/starsky.mp3",
+    "url": "https://v1.hitokoto.cn/nm/redirect/music/31654478",
     "cover": "https://p2.music.126.net/nJROWeZiEp1TUv27amRguQ==/18195817928618786.jpg?param=300y300",
-    "lrc": "https://cdn.moefe.org/music/lrc/starsky.lrc"
+    "lrc": "https://api.a632079.me/nm/lyric/31654478?pure=true"
   }
 ]

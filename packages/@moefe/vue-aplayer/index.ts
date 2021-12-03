@@ -6,7 +6,7 @@ export { APlayer };
 
 export default function install(
   Vue: typeof _Vue,
-  options?: APlayer.InstallOptions,
+  options?: APlayer.InstallOptions
 ) {
   const defaultOptions: APlayer.InstallOptions = {
     productionTip: true,
@@ -25,7 +25,7 @@ export default function install(
       `%c vue-aplayer %c v${APLAYER_VERSION} ${GIT_HASH} %c`,
       'background: #35495e; padding: 1px; border-radius: 3px 0 0 3px; color: #fff',
       'background: #41b883; padding: 1px; border-radius: 0 3px 3px 0; color: #fff',
-      'background: transparent',
+      'background: transparent'
     );
   }
 }

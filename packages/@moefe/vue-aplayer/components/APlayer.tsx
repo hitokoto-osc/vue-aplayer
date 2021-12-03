@@ -203,14 +203,14 @@ export default class APlayer extends Vue.Component<
   private get currentOrderIndex(): number {
     const { id, url } = this.currentMusic;
     return this.orderList.findIndex(
-      (item) => item.id === id || item.url === url,
+      (item) => item.id === id || item.url === url
     );
   }
 
   private get currentRandomIndex() {
     const { id, url } = this.currentMusic;
     return this.randomList.findIndex(
-      (item) => item.id === id || item.url === url,
+      (item) => item.id === id || item.url === url
     );
   }
 
@@ -227,16 +227,16 @@ export default class APlayer extends Vue.Component<
   private currentPlayed = 0;
 
   // 当前音量
-  private currentVolume = this.volume;
+  private currentVolume = this.volume || 1;
 
   // 当前循环模式
-  private currentLoop = this.loop;
+  private currentLoop = this.loop || 'all';
 
   // 当前顺序模式
-  private currentOrder = this.order;
+  private currentOrder = this.order || 'list';
 
   // 当前主题，通过封面自适应主题 > 当前播放的音乐指定的主题 > 主题选项
-  private currentTheme = this.currentMusic.theme || this.theme;
+  private currentTheme = this.currentMusic.theme || this.theme || 'light';
 
   // 通知对象
   private notice: Notice = { text: '', time: 2000, opacity: 0 };
@@ -246,7 +246,7 @@ export default class APlayer extends Vue.Component<
   @Watch('orderList', { immediate: true, deep: true })
   private async handleChangePlayList(
     newList: APlayer.Audio[],
-    oldList?: APlayer.Audio[],
+    oldList?: APlayer.Audio[]
   ) {
     if (oldList) {
       const newLength = newList.length;
@@ -258,7 +258,7 @@ export default class APlayer extends Vue.Component<
           if (this.currentOrderIndex < 0) {
             const { id, url } = this.currentMusic;
             const oldIndex = oldList.findIndex(
-              (item) => item.id === id || item.url === url,
+              (item) => item.id === id || item.url === url
             );
             Object.assign(this.currentMusic, oldList[oldIndex - 1]);
           }
@@ -274,7 +274,8 @@ export default class APlayer extends Vue.Component<
         [this.currentMusic] = this.currentList;
       } else {
         this.canPlay = !this.player.paused;
-        const music = this.orderList[this.currentOrderIndex] || this.orderList[0]; // eslint-disable-line max-len
+        const music =
+          this.orderList[this.currentOrderIndex] || this.orderList[0]; // eslint-disable-line max-len
         Object.assign(this.currentMusic, music);
       }
 
@@ -286,7 +287,7 @@ export default class APlayer extends Vue.Component<
   @Watch('currentMusic', { immediate: true, deep: true })
   private async handleChangeCurrentMusic(
     newMusic: APlayer.Audio,
-    oldMusic?: APlayer.Audio,
+    oldMusic?: APlayer.Audio
   ) {
     if (newMusic.theme) {
       this.currentTheme = newMusic.theme;
@@ -305,8 +306,8 @@ export default class APlayer extends Vue.Component<
 
     if (newMusic.url) {
       if (
-        (oldMusic !== undefined && oldMusic.url) !== newMusic.url
-        || this.player.src !== newMusic.url
+        (oldMusic !== undefined && oldMusic.url) !== newMusic.url ||
+        this.player.src !== newMusic.url
       ) {
         this.currentPlayed = 0;
         if (oldMusic && oldMusic.id) {
@@ -410,6 +411,7 @@ export default class APlayer extends Vue.Component<
 
   @Watch('loop')
   private handleChangeLoop() {
+    console.log(this.loop);
     this.currentLoop = this.loop;
   }
 
@@ -498,13 +500,14 @@ export default class APlayer extends Vue.Component<
   public switch(audio: number | string) {
     switch (typeof audio) {
       case 'number':
-        this.currentMusic = this.orderList[
+        this.currentMusic =
+          this.orderList[
             Math.min(Math.max(0, audio), this.orderList.length - 1)
           ];
         break;
       default: {
         const music = this.orderList.find(
-          (item) => typeof item.name === 'string' && item.name.includes(audio),
+          (item) => typeof item.name === 'string' && item.name.includes(audio)
         );
         if (music) this.currentMusic = music;
         break;
@@ -549,7 +552,7 @@ export default class APlayer extends Vue.Component<
   public showNotice(
     text: string,
     time: number = 2000,
-    opacity: number = 0.8,
+    opacity: number = 0.8
   ): Promise<void> {
     return new Promise((resolve) => {
       if (this.isMini) {
@@ -625,8 +628,8 @@ export default class APlayer extends Vue.Component<
               hls.attachMedia(this.player as HTMLVideoElement);
               resolve();
             } else if (
-              this.player.canPlayType('application/x-mpegURL')
-              || this.player.canPlayType('application/vnd.apple.mpegURL')
+              this.player.canPlayType('application/x-mpegURL') ||
+              this.player.canPlayType('application/vnd.apple.mpegURL')
             ) {
               resolve(music.url);
             } else {
@@ -658,9 +661,9 @@ export default class APlayer extends Vue.Component<
     this.store.set(
       this.settings[instanceIndex] !== undefined
         ? this.settings.map((item, index) =>
-            index === instanceIndex ? settings : item,
+            index === instanceIndex ? settings : item
           )
-        : [...this.settings, settings],
+        : [...this.settings, settings]
     );
   }
 
@@ -690,7 +693,8 @@ export default class APlayer extends Vue.Component<
 
   // 处理切换循环模式
   private handleToggleLoopMode() {
-    this.currentLoop = this.currentLoop === 'all'
+    this.currentLoop =
+      this.currentLoop === 'all'
         ? 'one'
         : this.currentLoop === 'one'
         ? 'none'

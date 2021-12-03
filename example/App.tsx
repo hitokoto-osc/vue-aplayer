@@ -25,33 +25,32 @@ export default class App extends Vue {
     audio: [],
   };
 
-  async created() {
-    const data: Array<APlayer.Audio> = await fetch('/music/data.json').then(
-      (res) => res.json(),
-    );
-    const isSafari = /apple/i.test(navigator.vendor);
-    if (isSafari) {
-      for (let i = 0; i < data.length; i++) {
-        data[i].speed = 1;
-      }
-    }
-    await sleep(1500);
-    this.aplayer1.audio = data.splice(0, 4);
-    await sleep(1500);
-    this.aplayer0.audio = data;
+  mounted() {
+    fetch('/music/data.json')
+      .then((res) => res.json())
+      .then((data: Array<APlayer.Audio>) => {
+        const isSafari = /apple/i.test(navigator.vendor);
+        if (isSafari) {
+          for (let i = 0; i < data.length; i++) {
+            // eslint-disable-next-line no-param-reassign
+            data[i].speed = 1;
+          }
+        }
+        this.aplayer1.audio = data.splice(0, 4);
+        this.aplayer0.audio = data;
+      });
   }
 
   render() {
     const { aplayer0, aplayer1 } = this;
-
-    return (
+    return aplayer0.audio && aplayer1.audio ? (
       <div id="app">
-        <APlayer {...aplayer0} />
+        <APlayer {...{ props: aplayer0, ...aplayer0 }} />
         <div class="landing">
           <h1>Vue-Aplayer</h1>
           <h3>🍰 A beautiful HTML5 music player for Vue.js.</h3>
           <div class="aplayer-wrap">
-            <APlayer {...aplayer1} />
+            <APlayer {...{ props: aplayer1, ...aplayer1 }} />
           </div>
           <div class="landing-buttons">
             <a
@@ -68,6 +67,8 @@ export default class App extends Vue {
           </div>
         </div>
       </div>
+    ) : (
+      <div id="app">Loading...</div>
     );
   }
 }

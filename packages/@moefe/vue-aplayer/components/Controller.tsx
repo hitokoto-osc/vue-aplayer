@@ -110,13 +110,8 @@ export default class Controller extends Vue.Component<{}, ControllerEvents> {
 
   render() {
     const { ptime, dtime, volumeIcon } = this;
-    const {
-      lrcType,
-      currentTheme,
-      currentVolume,
-      currentOrder,
-      currentLoop,
-    } = this.aplayer;
+    const { lrcType, currentTheme, currentVolume, currentOrder, currentLoop } =
+      this.aplayer;
 
     return (
       <div class="aplayer-controller">
@@ -172,12 +167,12 @@ export default class Controller extends Vue.Component<{}, ControllerEvents> {
           </div>{' '}
           <Button
             type="order"
-            icon={`order-${currentOrder}`}
+            icon={`order-${currentOrder ?? 'list'}`}
             onClick={this.handleToggleOrderMode}
           />{' '}
           <Button
             type="loop"
-            icon={`loop-${currentLoop}`}
+            icon={`loop-${currentLoop ?? 'all'}`}
             onClick={this.handleToggleLoopMode}
           />{' '}
           <Button type="menu" icon="menu" onClick={this.handleTogglePlaylist} />

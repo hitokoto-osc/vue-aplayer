@@ -6,7 +6,7 @@ export function sleep(delay: number = 0): Promise<void> {
 
 export function eventLoop(
   target: () => any,
-  timeout: number = 3000,
+  timeout: number = 3000
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     const startTime = new Date().getTime();
