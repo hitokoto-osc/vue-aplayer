@@ -1,8 +1,8 @@
 {
-  "name": "@moefe/vue-aplayer",
-  "version": "2.0.0-beta.5",
+  "name": "@hitokoto/vue-aplayer",
+  "version": "1.0.0",
   "description": "A beautiful HTML5 music player for Vue.js",
-  "author": "u3u <qwq@qwq.cat>",
+  "author": "a632079 <i@a632079.me>",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build --report --target lib --name VueAPlayer packages/@moefe/vue-aplayer/index.ts",

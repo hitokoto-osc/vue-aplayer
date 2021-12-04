@@ -6,7 +6,7 @@ export default ({
 }) => {
   if (typeof window !== 'undefined') {
     localStorage.setItem('aplayer-setting', '[]');
-    console.log(require('../../dist/VueAPlayer.common.js'));
-    Vue.use(require('../../dist/VueAPlayer.common.js').default);
+    const { Aplayer } = require('../../dist/VueAPlayer.umd.min.js');
+    Vue.use(Aplayer);
   }
 };
